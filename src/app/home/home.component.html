@@ -1,0 +1,41 @@
+<div class="card bg-light">
+  <div class="card-body">
+    <h4 class="card-title">Sakila Database Project</h4>
+    <h6 class="card-subtitle mb-2 text-muted">By : {{author}}</h6>
+    <p class="card-text">This is demo project develop for getting hands-on in Angular 4.</p>
+  </div>
+</div>
+<br/>
+<div class="card bg-light">
+  <div class="card-body">
+    <h5 class="card-title">Cascading Dropdown</h5>
+    <div class="row">
+      <div class="col-6">
+        <div class="form-group">
+          <label>Country</label>
+          <select class="form-control" (change)="onCountry_Select($event.target.value)">
+            <option value="0">--Select--</option>
+            <option *ngFor="let country of countries" 
+              value='{{ country.country_id }}'>
+              {{ country. country }}
+            </option>            
+          </select>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-6">
+        <div class="form-group">          
+          <label>City</label>
+          <select class="form-control" [disabled]="isCityDisable">
+            <option value="0">--Select--</option>
+            <option *ngFor="let city of cities" 
+              value="{{ city.city_id }}">
+              {{ city.city }}
+            </option>
+          </select>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

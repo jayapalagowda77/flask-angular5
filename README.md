@@ -1,8 +1,11 @@
-# flask-angular5
-This is project made for learning and practice purpose only. 
+# FLASK-ANGULAR 5
 
-Installation Pre-requisit: Python & MySql
+This project made for education and practice purpose only.
 
-1. pip install flask
-2. pip install mysqlclient
-3. pip install flask-mysqldb
+Pre-requisit :
+1. Install Python
+2. Install Flask
+    2.1 Install flask-mysqldb
+    2.2 Install flask-cors
+3. Install Mysql
+4. Install Mysql demo database - Sakila
