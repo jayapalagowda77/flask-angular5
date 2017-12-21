@@ -14,4 +14,8 @@ export class CountryService {
   getCountries(): Observable<Country[]> {
     return this.http.get('http://localhost:5000/api/country').map(res => res.json());
   }
+
+  getCountryById(id: number) {
+    return this.http.get('http://localhost:5000/api/country/' + id ).map( res => res.json());
+  }
 }

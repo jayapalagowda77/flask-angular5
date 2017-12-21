@@ -18,7 +18,7 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.countryService.getCountries().subscribe(d => { this.countries = d; console.log(d); });
+    this.countryService.getCountries().subscribe(d =>  this.countries = d );
   }
 
   onCountry_Select(selected_CountryId: number) {

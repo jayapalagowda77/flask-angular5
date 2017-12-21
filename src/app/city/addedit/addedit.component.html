@@ -1,3 +1,13 @@
-<p>
-  addedit works!
-</p>
+<div class="card">
+  <div class="card-header">{{id ? 'Edit':'Add'}} City</div>
+  <div class="card-body">
+    <form *ngIf="city" name="cityAddEditForm" (ngSubmit)="onCityFormSubmit(city)">
+      <div class="form-group">
+        <label for="">City</label>
+        <input type="text" class="form-control" value="{{city.city}}" />
+      </div>
+      <button type="submit" class="btn btn-success">{{id ? 'Update':'Create'}}</button>&nbsp;
+      <a class="btn btn-default" [routerLink]="['/city']">Cancel</a>
+    </form>
+  </div>
+</div>

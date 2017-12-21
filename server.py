@@ -66,6 +66,14 @@ def cities():
     cur.close()
     return jsonify(cit)
 
+@app.route('/api/city/<string:id>')
+def cityById(id):
+    cur = mysql.connection.cursor()
+    cur.execute('SELECT * FROM city WHERE city_id = %s', [id])
+    cty = cur.fetchone()
+    cur.close()
+    return jsonify(cty)
+
 @app.route('/api/city/country/<string:id>')
 def getCityByCountryId(id):
     cur = mysql.connection.cursor()

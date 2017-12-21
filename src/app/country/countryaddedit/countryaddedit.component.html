@@ -1,3 +1,14 @@
-<p>
-  countryaddedit works!
-</p>
+<div class="card">
+    <div class="card-header">{{id ? 'Edit':'Add'}} Country</div>
+    <div class="card-body">
+      <form *ngIf="country" name="countryAddEditForm" (ngSubmit)="onCountryFormSubmit(country)">
+        <div class="form-group">
+          <label for="">Country</label>
+          <input type="text" class="form-control" value="{{country.country}}" />
+        </div>
+        <button type="submit" class="btn btn-success">{{id ? 'Update':'Create'}}</button>&nbsp;
+        <a class="btn btn-default" [routerLink]="['/country']">Cancel</a>
+      </form>
+    </div>
+  </div>
+  
