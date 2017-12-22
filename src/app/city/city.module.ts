@@ -5,11 +5,10 @@ import { CityRoutingModule } from './city.routing.module';
 
 
 import { CityComponent } from './city.component';
-import { AddeditComponent } from './addedit/addedit.component';
-import { ListComponent } from './list/list.component';
-import { DetailComponent } from './detail/detail.component';
-
 import { CityService } from './city.service';
+import { CityAddeditComponent } from './city-addedit/city-addedit.component';
+import { CityListComponent } from './city-list/city-list.component';
+import { CityDetailComponent } from './city-detail/city-detail.component';
 
 
 @NgModule({
@@ -18,6 +17,6 @@ import { CityService } from './city.service';
     CommonModule,
     CityRoutingModule
   ],
-  declarations: [CityComponent, AddeditComponent, ListComponent, DetailComponent]
+  declarations: [CityComponent, CityAddeditComponent, CityListComponent, CityDetailComponent]
 })
 export class CityModule { }

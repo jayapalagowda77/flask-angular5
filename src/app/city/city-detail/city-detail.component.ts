@@ -4,19 +4,22 @@ import { CityService } from '../city.service';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
-  selector: 'app-detail',
-  templateUrl: './detail.component.html'
+  selector: 'app-city-detail',
+  templateUrl: './city-detail.component.html'
 })
-export class DetailComponent implements OnInit {
-  city: City;
+export class CityDetailComponent implements OnInit {
   id: number;
-  constructor(private cityService: CityService, private route: ActivatedRoute) {
-    this.route.params.subscribe(v => this.id = + v['id']);
-   }
+  city: City;
+  constructor(private cityService: CityService,
+    private route: ActivatedRoute ) {
+      this.route.params
+      .subscribe(v => this.id = + v['id']);
+    }
 
   ngOnInit() {
     this.cityService
     .getCityByCityId(this.id)
     .subscribe(d => this.city = d);
   }
+
 }

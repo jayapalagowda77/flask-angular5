@@ -6,6 +6,7 @@ import { HttpModule } from '@angular/http';
 import { AppRoutingModule } from './app.routing.module';
 import { CityModule } from './city/city.module';
 import { CountryModule } from './country/country.module';
+import { UserModule } from './user/user.module';
 
 
 import { AppComponent } from './app.component';
@@ -24,7 +25,8 @@ import { HomeComponent } from './home/home.component';
     AppRoutingModule,
     HttpModule,
     CityModule,
-    CountryModule
+    CountryModule,
+    UserModule
   ],
   providers: [],
   bootstrap: [AppComponent]

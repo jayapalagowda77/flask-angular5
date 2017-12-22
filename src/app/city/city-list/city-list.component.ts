@@ -3,14 +3,16 @@ import { City } from '../city';
 import { CityService } from '../city.service';
 
 @Component({
-  selector: 'app-list',
-  templateUrl: './list.component.html'
+  selector: 'app-city-list',
+  templateUrl: './city-list.component.html'
 })
-export class ListComponent implements OnInit {
+export class CityListComponent implements OnInit {
   cities: City[];
   constructor(private cityService: CityService) { }
 
   ngOnInit() {
-    this.cityService.getCities().subscribe(d => this.cities = d);
+    this.cityService.getCities()
+    .subscribe(d => this.cities = d);
   }
+
 }
