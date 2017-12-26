@@ -18,7 +18,7 @@
       <tbody>
         <tr *ngFor="let country of countries">
           <td>{{ country.country_id }}</td>
-          <td>{{ country.country }}</td>
+          <td><a [routerLink]="['detail', country.country_id]">{{ country.country }}</a></td>
           <td>{{ country.last_update | date:'dd/MM/yyyy'}}</td>
           <td>
             <a class="btn btn-outline-warning" [routerLink] ="['edit', country.country_id]">Edit</a>

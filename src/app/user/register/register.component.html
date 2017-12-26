@@ -1,3 +1,107 @@
-<p>
-  register works!
-</p>
+<div class="card bg-light border-secondary">
+  <div class="card-header">
+    <h4>Site Registration</h4>
+  </div>
+  <div class="card-body">
+    <form [formGroup]="signUpForm" (ngSubmit)="onRegister()">
+      <div class="form-group">
+        <label for="txtName">Your Full Name :</label>
+        <input type="text" 
+          name="txtName" 
+          id="txtName" 
+          class="form-control"
+          formControlName="txtName" />
+        <div class="alert alert-danger"
+          *ngIf="!signUpForm.get('txtName').valid 
+          && signUpForm.get('txtName').touched">
+          <span *ngIf="signUpForm.get('txtName').errors.required">
+            Required Your Name
+          </span>
+          <span *ngIf="signUpForm.get('txtName').errors.minlength">
+            Required more than {{ signUpForm.get('txtName').errors.minlength.requiredLength }} char
+          </span>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="txtEmail">Email :</label>
+        <input type="email" 
+          name="txtEmail" 
+          id="txtEmail" 
+          class="form-control"
+          formControlName="txtEmail" />
+        <div class="alert alert-danger"
+          *ngIf="!signUpForm.get('txtEmail').valid && signUpForm.get('txtEmail').touched">
+          <span *ngIf="signUpForm.get('txtEmail').errors.required">
+              Required Email
+          </span>
+          <span *ngIf="signUpForm.get('txtEmail').errors.email">
+             Invalid Email
+          </span>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="txtUserName">Site User Name :</label>
+        <input type="text" 
+          name="txtUserName" 
+          id="txtUserName" 
+          class="form-control"
+          formControlName="txtUserName" />
+        <div class="alert alert-danger"
+          *ngIf="!signUpForm.get('txtUserName').valid 
+            && signUpForm.get('txtUserName').touched">
+          <span *ngIf="signUpForm.get('txtUserName').errors.required">
+           Required User Name
+          </span>
+          <span *ngIf="signUpForm.get('txtUserName').errors.minlength">
+            Required more than {{ signUpForm.get('txtUserName').errors.minlength.requiredLength}} char
+          </span>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="txtPassword">Password :</label>
+        <input type="password" 
+          name="txtPassword" 
+          id="txtPassword" 
+          class="form-control"
+          formControlName="txtPassword" />
+        <div class="alert alert-danger"
+          *ngIf="!signUpForm.get('txtPassword').valid 
+            && signUpForm.get('txtPassword').touched">
+          <span *ngIf="signUpForm.get('txtPassword').errors.required">
+            Required Password
+          </span>          
+          <span *ngIf="signUpForm.get('txtPassword').errors.minlength">
+            Required more than {{ signUpForm.get('txtPassword').errors.minlength.requiredLength}} char
+          </span>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="txtConfirmPassword">Confirm Password :</label>
+        <input type="password" 
+          name="txtConfirmPassword" 
+          id="txtConfirmPassword" 
+          class="form-control"
+          formControlName="txtConfirmPassword" />
+        <div class="alert alert-danger"
+          *ngIf="!signUpForm.get('txtConfirmPassword').valid 
+            && signUpForm.get('txtConfirmPassword').touched">
+          <span *ngIf="signUpForm.get('txtConfirmPassword').errors.required">
+            Required confirm password
+          </span>
+          <span *ngIf="signUpForm.get('txtConfirmPassword').errors.minlength">
+            Required more than {{ signUpForm.get('txtConfirmPassword').errors.minlength.requiredLength}} char
+          </span>
+        </div>
+      </div>
+      <button type="submit" 
+        class="btn btn-success"
+        [disabled]="!signUpForm.valid">
+        Register
+      </button>
+      <button class="btn btn-secondary" 
+        (click)="signUpForm.reset()">
+        Reset
+      </button>
+    </form>
+  </div>
+</div>

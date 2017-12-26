@@ -19,7 +19,7 @@
         <tbody>
           <tr *ngFor="let city of cities">
             <td>{{ city.city_id }}</td>
-            <td>{{ city.city }}</td>
+            <td><a [routerLink]="['detail', city.city_id]">{{ city.city }}</a></td>
             <td>{{ city.country_id }}</td>
             <td>{{ city.last_update }}</td>
             <td>

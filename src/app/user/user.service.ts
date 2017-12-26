@@ -14,4 +14,8 @@ export class UserService {
   getUserById(id: number): Observable<User> {
     return this.http.get('http://localhost:5000/api/user/' + id).map( res => res.json());
   }
+
+  registerUser(u: User) {
+    this.http.post('http://localhost:5000/api/user', u);
+  }
 }

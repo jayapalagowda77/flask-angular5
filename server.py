@@ -1,16 +1,37 @@
 from flask import Flask, jsonify, request
 from flask_cors import CORS
 from flask_mysqldb import MySQL
+from flask_jwt import JWT, jwt_required, current_identity
 
 app = Flask(__name__)
 CORS(app)
 
+#MySQL configuration
 app.config['MYSQL_HOST'] = 'localhost'
 app.config['MYSQL_USER'] = 'root'
 app.config['MYSQL_PASSWORD'] = '1234'
 app.config['MYSQL_DB'] = 'testdb'
 app.config['MYSQL_CURSORCLASS'] = 'DictCursor'
 mysql = MySQL(app)
+
+class User(object):
+    def __init__(self, id, name, email, username, password):
+        self.id = id
+        self.name = name
+        self.email = email
+        self.username = username
+        self.password = password
+
+    def __str__(self):
+        return "User (id='%s')" % self.id
+
+def authenticate(username, password):
+    cur = mysql.connection.cursor()
+    cur.execute("SELECT username, password FROM country WHERE country_id = %s", [id])
+    c = cur.fetchone()
+    
+#JWT configuration
+#jwt = JWT(app, authenticate, identity)
 
 
 # @app.route('/api/actor')
@@ -153,6 +174,10 @@ def getUser(id):
     usr = cur.fetchone()
     cur.close()
     return jsonify(usr)
+
+@app.route('/api/user', methods=['POST'])
+def registerUser():
+    pass
 
 if __name__ == "__main__":
     app.secret_key = 'secret123'

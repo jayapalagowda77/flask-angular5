@@ -1,3 +1,7 @@
-<p>
-  countrydetail works!
-</p>
+<div class="card">
+    <div class="card-body" *ngIf="country">
+      <a [routerLink]="['/country']" class="card-link">Back</a>
+      <div class="card-title"><h3>{{country.country}}</h3></div>
+      <p>{{country.last_update | date:'dd/MM/yyyy'}}</p>
+     </div>
+ </div>

@@ -1,16 +1,8 @@
 <div class="card">
-    <div class="card-body">
-      <p>
-        <label>City Name : </label>
-        <span>{{ city.city }}</span>
-      </p>
-      <p>
-        <label>Country Id : </label>
-        <span>{{ city.country_id }}</span>
-      </p>
-      <p>
-        <lable>Last Updated Date : </lable>
-        <span>{{ city.last_update }}</span>
-      </p>
+   <div class="card-body" *ngIf="city">
+     <a [routerLink]="['/city']" class="card-link">Back</a>
+     <div class="card-title"><h3>{{city.city}}</h3></div>
+     <p>{{city.country_id}}</p>
+     <p>{{city.last_update | date:'dd/MM/yyyy'}}</p>
     </div>
 </div>
