@@ -9,7 +9,7 @@ CORS(app)
 #MySQL configuration
 app.config['MYSQL_HOST'] = 'localhost'
 app.config['MYSQL_USER'] = 'root'
-app.config['MYSQL_PASSWORD'] = '1234'
+app.config['MYSQL_PASSWORD'] = 'Syne@1234'
 app.config['MYSQL_DB'] = 'testdb'
 app.config['MYSQL_CURSORCLASS'] = 'DictCursor'
 mysql = MySQL(app)
@@ -27,12 +27,25 @@ class User(object):
 
 def authenticate(username, password):
     cur = mysql.connection.cursor()
-    cur.execute("SELECT username, password FROM country WHERE country_id = %s", [id])
-    c = cur.fetchone()
-    
-#JWT configuration
-#jwt = JWT(app, authenticate, identity)
+    cur.execute("SELECT * FROM users WHERE username = %s AND password = %s;", [username, password])
+    usr = cur.fetchone()
+    if usr is None:
+        return None
+    else:
+        return usr
 
+def identity(payload):
+    user_id = payload['identity']
+    cur = mysql.connect.cursor()
+    cur.execute("SELECT * FROM users WHERE id = %s;", [user_id])
+    usr = cur.fetchone()
+    if usr is None:
+        return None
+    else:
+        return usr
+
+#JWT configuration
+jwt = JWT(app, authenticate, identity)
 
 # @app.route('/api/actor')
 # def actors():
