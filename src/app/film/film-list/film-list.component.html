@@ -1,0 +1,28 @@
+<table class="table table-bordered" *ngIf="films">
+  <thead class="thead-light">
+    <tr>
+      <th>Film Id</th>
+      <th>Title</th>
+      <th>Description</th>
+      <th>Release Year</th>
+      <th>Language Id</th>      
+      <th>Rental Duration</th>
+      <th>Rating</th>
+      <th>Sepcial Features</th>
+      <th>Last Update</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let film of films" (click)="filmRowClick(film)">
+      <td>{{ film.film_id }}</td>
+      <td>{{ film.title }}</td>
+      <td>{{ film.description }}</td>
+      <td>{{ film.release_year }}</td>
+      <td>{{ film.language_id }}</td>      
+      <td>{{ film.rental_duration }}</td>
+      <td>{{ film.rating }}</td>
+      <td>{{ film.special_features }}</td>
+      <td>{{ film.last_update }}</td>
+    </tr>
+  </tbody>
+</table>

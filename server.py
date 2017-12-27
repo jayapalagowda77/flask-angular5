@@ -10,42 +10,42 @@ CORS(app)
 app.config['MYSQL_HOST'] = 'localhost'
 app.config['MYSQL_USER'] = 'root'
 app.config['MYSQL_PASSWORD'] = 'Syne@1234'
-app.config['MYSQL_DB'] = 'testdb'
+app.config['MYSQL_DB'] = 'sakila'
 app.config['MYSQL_CURSORCLASS'] = 'DictCursor'
 mysql = MySQL(app)
 
-class User(object):
-    def __init__(self, id, name, email, username, password):
-        self.id = id
-        self.name = name
-        self.email = email
-        self.username = username
-        self.password = password
+# class User(object):
+#     def __init__(self, id, name, email, username, password):
+#         self.id = id
+#         self.name = name
+#         self.email = email
+#         self.username = username
+#         self.password = password
 
-    def __str__(self):
-        return "User (id='%s')" % self.id
+#     def __str__(self):
+#         return "User (id='%s')" % self.id
 
-def authenticate(username, password):
-    cur = mysql.connection.cursor()
-    cur.execute("SELECT * FROM users WHERE username = %s AND password = %s;", [username, password])
-    usr = cur.fetchone()
-    if usr is None:
-        return None
-    else:
-        return usr
+# def authenticate(username, password):
+#     cur = mysql.connection.cursor()
+#     cur.execute("SELECT * FROM users WHERE username = %s AND password = %s;", [username, password])
+#     usr = cur.fetchone()
+#     if usr is None:
+#         return None
+#     else:
+#         return usr
 
-def identity(payload):
-    user_id = payload['identity']
-    cur = mysql.connect.cursor()
-    cur.execute("SELECT * FROM users WHERE id = %s;", [user_id])
-    usr = cur.fetchone()
-    if usr is None:
-        return None
-    else:
-        return usr
+# def identity(payload):
+#     user_id = payload['identity']
+#     cur = mysql.connect.cursor()
+#     cur.execute("SELECT * FROM users WHERE id = %s;", [user_id])
+#     usr = cur.fetchone()
+#     if usr is None:
+#         return None
+#     else:
+#         return usr
 
-#JWT configuration
-jwt = JWT(app, authenticate, identity)
+# #JWT configuration
+# jwt = JWT(app, authenticate, identity)
 
 # @app.route('/api/actor')
 # def actors():
@@ -91,6 +91,14 @@ def country(id):
 #     cur.close()
 #     return jsonify(cust)
 
+
+@app.route('/api/film')
+def getFilm():
+    cur = mysql.connection.cursor()
+    cur.execute("SELECT film_id, title, description, release_year, language_id, rental_duration, rating, special_features, last_update FROM film limit 5;")
+    films = cur.fetchall()
+    cur.close()
+    return jsonify(films)
 
 @app.route('/api/city')
 def cities():
@@ -172,25 +180,25 @@ def getCityByCountryId(id):
 #     cur.close()
 #     return jsonify(result)
 
-@app.route('/api/user')
-def allUsers():
-    cur = mysql.connection.cursor()
-    cur.execute("SELECT * FROM users;")
-    usrs = cur.fetchall()
-    cur.close()
-    return jsonify(usrs)
+# @app.route('/api/user')
+# def allUsers():
+#     cur = mysql.connection.cursor()
+#     cur.execute("SELECT * FROM users;")
+#     usrs = cur.fetchall()
+#     cur.close()
+#     return jsonify(usrs)
 
-@app.route('/api/user/<string:id>')
-def getUser(id):
-    cur = mysql.connection.cursor()
-    cur.execute('SELECT * FROM users WHERE id = %s', [id])
-    usr = cur.fetchone()
-    cur.close()
-    return jsonify(usr)
+# @app.route('/api/user/<string:id>')
+# def getUser(id):
+#     cur = mysql.connection.cursor()
+#     cur.execute('SELECT * FROM users WHERE id = %s', [id])
+#     usr = cur.fetchone()
+#     cur.close()
+#     return jsonify(usr)
 
-@app.route('/api/user', methods=['POST'])
-def registerUser():
-    pass
+# @app.route('/api/user', methods=['POST'])
+# def registerUser():
+#     pass
 
 if __name__ == "__main__":
     app.secret_key = 'secret123'

@@ -7,7 +7,7 @@ import { AppRoutingModule } from './app.routing.module';
 import { CityModule } from './city/city.module';
 import { CountryModule } from './country/country.module';
 import { UserModule } from './user/user.module';
-
+import { FilmModule } from './film/film.module';
 
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
@@ -26,7 +26,8 @@ import { HomeComponent } from './home/home.component';
     HttpModule,
     CityModule,
     CountryModule,
-    UserModule
+    UserModule,
+    FilmModule
   ],
   providers: [],
   bootstrap: [AppComponent]
