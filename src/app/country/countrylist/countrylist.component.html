@@ -1,14 +1,17 @@
 <div class="row justify-content-md-center">
   <div class="col-10">
-    <a class="btn btn-outline-success" routerLink="add">Add</a>
-  </div>
+    <div class="row">
+        <div class="col">
+            <a class="btn btn-outline-success" routerLink="add">Add</a>
+        </div>
+        <div class="col align-self-center text-right">Search :</div>
+        <div class="col">
+           <input class="form-control" [(ngModel)]="countryName" name="countryName"/>
+        </div>
+    </div>
+  </div>  
 </div>
 <br/>
-<div class="row justify-content-md-center">
-  <div class="col-10 align-self-end">
-    Search : <input/>
-  </div>
-</div>
 <div class="row justify-content-md-center">
   <div class="col-10">
     <table class="table table-bordered" *ngIf="countries">
@@ -21,7 +24,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let country of countries">
+        <tr *ngFor="let country of countries | countryFilter:countryName">
           <td>{{ country.country_id }}</td>
           <td><a [routerLink]="['detail', country.country_id]">{{ country.country }}</a></td>
           <td>{{ country.last_update | date:'dd/MM/yyyy'}}</td>

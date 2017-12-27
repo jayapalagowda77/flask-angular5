@@ -8,11 +8,11 @@ import { CityService } from '../city.service';
 })
 export class CityListComponent implements OnInit {
   cities: City[];
+  cityName: string;
   constructor(private cityService: CityService) { }
 
   ngOnInit() {
     this.cityService.getCities()
     .subscribe(d => this.cities = d);
   }
-
 }

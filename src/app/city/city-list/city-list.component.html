@@ -1,7 +1,15 @@
 <div class="row justify-content-md-center">
     <div class="col-10">
-      <a class="btn btn-outline-success" routerLink="add">Add</a>
-    </div>
+      <div class="row">
+          <div class="col">
+              <a class="btn btn-outline-success" routerLink="add">Add</a>
+          </div>
+          <div class="col align-self-center text-right">Search :</div>
+          <div class="col">
+             <input class="form-control" [(ngModel)]="cityName"/>
+          </div>
+      </div>
+    </div>  
   </div>
   <br/>
   <div class="row justify-content-md-center">
@@ -17,7 +25,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let city of cities">
+          <tr *ngFor="let city of cities | cityFilter:cityName">
             <td>{{ city.city_id }}</td>
             <td><a [routerLink]="['detail', city.city_id]">{{ city.city }}</a></td>
             <td>{{ city.country_id }}</td>

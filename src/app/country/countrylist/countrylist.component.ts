@@ -9,6 +9,7 @@ import { Country } from '../country';
 })
 export class CountrylistComponent implements OnInit {
   countries: Country[];
+  countryName: string;
   constructor(private countryService: CountryService) { }
 
   ngOnInit() {

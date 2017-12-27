@@ -9,6 +9,7 @@ import { CountryaddeditComponent } from './countryaddedit/countryaddedit.compone
 import { CountrylistComponent } from './countrylist/countrylist.component';
 import { CountrydetailComponent } from './countrydetail/countrydetail.component';
 import { CountryService } from './country.service';
+import { CountryFilterPipe } from './country-filter.pipe';
 
 
 @NgModule({
@@ -18,6 +19,6 @@ import { CountryService } from './country.service';
     FormsModule,
     CountryRoutingModule
   ],
-  declarations: [CountryComponent, CountryaddeditComponent, CountrylistComponent, CountrydetailComponent]
+  declarations: [CountryComponent, CountryaddeditComponent, CountrylistComponent, CountrydetailComponent, CountryFilterPipe]
 })
 export class CountryModule { }
