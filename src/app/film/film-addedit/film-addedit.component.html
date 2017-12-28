@@ -1,36 +1,39 @@
-<div *ngIf="film">
-  <form>
-    <div class="form-group">
-      <lable>Title</lable>
-      <input type="text" name="title" class="form-control">
-    </div>
-    <div class="form-group">
-      <lable>Description</lable>
-      <input type="text" name="description" class="form-control">
-    </div>
-    <div class="form-group">
-      <lable>Release Year</lable>
-      <input type="text" name="releaseYear" class="form-control">
-    </div>
-    <div class="form-group">
-      <lable>Language Id</lable>
-      <input type="text" name="languageId" class="form-control">
-    </div>
-    <div class="form-group">
-      <lable>Rental Duration</lable>
-      <input type="text" name="rentalDuration" class="form-control">
-    </div>
-    <div class="form-group">
-      <lable>Rating</lable>
-      <input type="text" name="rating" class="form-control">
-    </div>
-    <div class="form-group">
-      <lable>Sepcial Features</lable>
-      <input type="text" name="specialFeature" class="form-control">
-    </div>
-    <div class="form-group">
-      <lable>Last Update</lable>
-      <input type="text" name="lastUpdate" class="form-control">
-    </div>
-  </form>
+<div class="card bg-light" *ngIf="film && film.film_id > 0">
+  <div class="card-body">
+    <form ngForm #f="ngForm" (ngSubmit)="onFilmSave(f)">
+      <div class="form-group">
+        <label for="">Title</label>
+        <input type="text" name="title" [(ngModel)] = "film.title" class="form-control">
+      </div>
+      <div class="form-group">
+        <label>Description</label>
+        <input type="text" name="description" [(ngModel)] = "film.description" class="form-control">
+      </div>
+      <div class="form-group">
+        <label>Release Year</label>
+        <input type="text" name="releaseYear" [(ngModel)] = "film.release_year" class="form-control">
+      </div>
+      <div class="form-group">
+        <label>Language Id</label>
+        <input type="text" name="languageId" [(ngModel)] = "film.language_id" class="form-control">
+      </div>
+      <div class="form-group">
+        <label>Rental Duration</label>
+        <input type="text" name="rentalDuration" [(ngModel)] = "film.rental_duration" class="form-control">
+      </div>
+      <div class="form-group">
+        <label>Rating</label>
+        <input type="text" name="rating" [(ngModel)] = "film.rating" class="form-control">
+      </div>
+      <div class="form-group">
+        <label>Sepcial Features</label>
+        <input type="text" name="specialFeature" [(ngModel)] = "film.special_features" class="form-control">
+      </div>
+      <div class="form-group">
+        <label>Last Update</label>
+        <input type="text" name="lastUpdate" [(ngModel)] = "film.last_update" class="form-control">
+      </div>
+      <button class="btn btn-success" type="submit">Save</button>
+    </form>
+  </div>
 </div>

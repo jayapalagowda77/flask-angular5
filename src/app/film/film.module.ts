@@ -6,6 +6,8 @@ import { FilmService } from './film.service';
 import { FilmRoutingModule } from './film.routing.module';
 import { FilmListComponent } from './film-list/film-list.component';
 import { FilmAddeditComponent } from './film-addedit/film-addedit.component';
+import { FilmRatingComponent } from './film-rating/film-rating.component';
+import { FilmRatingPipe } from './pipe/film-rating.pipe';
 
 @NgModule({
   imports: [
@@ -13,7 +15,7 @@ import { FilmAddeditComponent } from './film-addedit/film-addedit.component';
     FormsModule,
     FilmRoutingModule
   ],
-  declarations: [FilmComponent, FilmListComponent, FilmAddeditComponent],
+  declarations: [FilmComponent, FilmListComponent, FilmAddeditComponent, FilmRatingComponent, FilmRatingPipe],
   providers: [FilmService]
 })
 export class FilmModule { }

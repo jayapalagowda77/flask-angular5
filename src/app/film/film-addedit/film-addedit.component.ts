@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Film } from '../film';
 import { FilmService } from '../film.service';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-film-addedit',
@@ -12,10 +13,10 @@ export class FilmAddeditComponent implements OnInit {
   constructor(private filmService: FilmService) { }
 
   ngOnInit() {
-    this.film = this.filmService.getCurrentRecord();
+    this.filmService.getCurrentRecord().subscribe( d => this.film = d );
   }
 
-  showFilmDetails(film: Film) {
-    console.log(film);
+  onFilmSave(formData: NgForm) {
+    console.log(formData.value);
   }
 }

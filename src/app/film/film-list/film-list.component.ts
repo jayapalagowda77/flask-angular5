@@ -9,11 +9,16 @@ import { Film } from '../film';
 })
 export class FilmListComponent implements OnInit {
   films: Film[];
+  filmRating: string[] = [];
   constructor(private filmService: FilmService) {
-  }
+   }
 
   ngOnInit() {
     this.filmService.getFilms(10).subscribe(d => this.films = d);
+    this.filmService.getFilmRating().subscribe( r => {
+      this.filmRating = r;
+      // console.log(this.filmRating);
+    });
   }
 
   filmRowClick(film: Film) {
