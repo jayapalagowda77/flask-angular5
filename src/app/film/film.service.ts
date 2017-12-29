@@ -22,16 +22,22 @@ export class FilmService {
     return this.currentRecord;
   }
 
-  setFilmRating(r: string[]) {
-    if (this.filmRating.value.length === 0) {
-      // console.log('length zero');
-      this.filmRating.next(r);
+  setFilmRating(r: any) {
+    let current = this.filmRating.getValue();
+    // console.log(current);
+    if (r.new) {
+      if (current.length > 0) {
+        current = current.concat(r.value);
+        this.filmRating.next(current);
+      } else {
+        this.filmRating.next(r.value);
+      }
     } else {
-      // console.log('length not zero');
-      let temp = this.filmRating.value;
-      temp.concat(r);
-      console.log(temp);
-      // this.filmRating.next(r);
+      if (current.length > 0) {
+        this.filmRating.next(current.filter(f => f != r.value));
+      } else {
+        this.filmRating.next(r.value);
+      }
     }
   }
 

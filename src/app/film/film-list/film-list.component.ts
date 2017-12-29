@@ -17,7 +17,6 @@ export class FilmListComponent implements OnInit {
     this.filmService.getFilms(10).subscribe(d => this.films = d);
     this.filmService.getFilmRating().subscribe( r => {
       this.filmRating = r;
-      // console.log(this.filmRating);
     });
   }
 

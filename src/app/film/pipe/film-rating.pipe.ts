@@ -6,6 +6,6 @@ import { Film } from '../film';
 })
 export class FilmRatingPipe implements PipeTransform {
   transform(value: Film[], args?: string[]): any {
-    return args ? value.filter( f => args.indexOf(f.rating) > 0) : value;
+    return args ? value.filter( f => args.indexOf(f.rating) !== -1) : value;
   }
 }
