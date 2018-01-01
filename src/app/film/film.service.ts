@@ -11,7 +11,7 @@ export class FilmService {
   constructor(private http: Http) { }
 
   getFilms(limit: number): Observable<Film[]> {
-    return this.http.get('http://localhost:5000/api/film').map(res => res.json());
+    return this.http.get('http://localhost:5000/api/film?limit=' + limit).map(res => res.json());
   }
 
   setCurrentRecord(f: Film) {
@@ -25,20 +25,12 @@ export class FilmService {
   setFilmRating(r: any) {
     let current = this.filmRating.getValue();
     // console.log(current);
-    if (r.new) {
-      if (current.length > 0) {
-        current = current.concat(r.value);
-        this.filmRating.next(current);
-      } else {
-        this.filmRating.next(r.value);
-      }
-    } else {
-      if (current.length > 0) {
-        this.filmRating.next(current.filter(f => f != r.value));
-      } else {
-        this.filmRating.next(r.value);
-      }
-    }
+    current = current.length > 0 ?
+              r.new ?
+                  current.concat(r.value)
+                : current.filter(f => f != r.value)
+              : r.value;
+    this.filmRating.next(current);
   }
 
   getFilmRating(): BehaviorSubject<string[]> {

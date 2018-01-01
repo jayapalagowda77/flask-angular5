@@ -2,8 +2,8 @@
   <div class="card-body">
     <div class="row">
       <div class="col"><strong>Ratings:</strong></div>
-      <div class="col" *ngFor="let r of ratings">
-        <input type="checkbox" (change)="filterRow($event)" value="{{r}}"> {{r}}
+      <div class="col" *ngFor="let r of ratingList">
+        <input type="checkbox" [checked]="r.check" (change)="filterRow($event)" value="{{r.value}}"> {{r.value}}
       </div>
     </div>
   </div>

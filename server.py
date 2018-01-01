@@ -9,7 +9,7 @@ CORS(app)
 #MySQL configuration
 app.config['MYSQL_HOST'] = 'localhost'
 app.config['MYSQL_USER'] = 'root'
-app.config['MYSQL_PASSWORD'] = 'Syne@1234'
+app.config['MYSQL_PASSWORD'] = '1234'
 app.config['MYSQL_DB'] = 'sakila'
 app.config['MYSQL_CURSORCLASS'] = 'DictCursor'
 mysql = MySQL(app)
@@ -92,10 +92,11 @@ def country(id):
 #     return jsonify(cust)
 
 
-@app.route('/api/film')
+@app.route('/api/film', methods=['GET'])
 def getFilm():
+    args1 = int(request.args['limit'])
     cur = mysql.connection.cursor()
-    cur.execute("SELECT film_id, title, description, release_year, language_id, rental_duration, rating, special_features, last_update FROM film limit 5;")
+    cur.execute("SELECT film_id, title, description, release_year, language_id, rental_duration, rating, special_features, last_update FROM film limit %s;", [args1])
     films = cur.fetchall()
     cur.close()
     return jsonify(films)

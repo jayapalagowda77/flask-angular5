@@ -6,9 +6,8 @@ import { Country } from './country';
 })
 export class CountryFilterPipe implements PipeTransform {
   transform(value: Country[], args: string): Country[] {
-    console.log(args);
     return args ?
-    value.filter(c => c.country.toLocaleLowerCase().indexOf(args.toLocaleLowerCase()) !== -1)
-    : value;
+      value.filter(c => c.country.toLocaleLowerCase().indexOf(args.toLocaleLowerCase()) !== -1)
+      : value;
   }
 }

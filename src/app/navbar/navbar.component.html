@@ -15,8 +15,18 @@
       <li class="nav-item">
         <a class="nav-link" routerLink="/city">City</a>
       </li>
-      <li>
+      <li class="nav-item">
         <a class="nav-link" routerLink="/film">Film</a>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarRxDropDownMenu" data-toggle="dropdown">
+          RxJs
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarRxDropDownMenu">
+          <a routerLink="/rx/browser-event" class="dropdown-item">Simple Browser Event</a>
+          <a routerLink="/rx/observer-todolist" class="dropdown-item">Observer Design Pattern</a>
+          <a class="dropdown-item">Observable Design Pattern</a>
+        </div>
       </li>
     </ul>
     <ul class="navbar-nav">

@@ -1,0 +1,14 @@
+<br/>
+<div class="card text-center bg-dark text-white">
+  <h5 class="card-header">Browser event experiment</h5>
+  <div class="card-body">
+    <p>X :
+      <span id="x"></span> Y:
+      <span id="y"></span>
+    </p>
+    <div class="hover-me" id="hover"></div>
+    <button class="btn btn-outline-dark" (click)="subscribe_evt ? unsubscribe() : subscribe()">
+      {{subscribe_evt ? 'Un-Subscribe': 'Subscribe'}}
+    </button>
+  </div>
+</div>

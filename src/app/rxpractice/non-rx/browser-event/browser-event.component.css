@@ -1,0 +1,13 @@
+.hover-me{
+    background: white;
+    width: 300px;
+    height: 300px;
+    margin: 0 auto 30px auto;
+    cursor: crosshair;
+}
+.btn-outline-dark {
+    background: white;
+}
+.btn-outline-dark:hover {
+    color: red;
+}

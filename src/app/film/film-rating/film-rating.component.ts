@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FilmService } from '../film.service';
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/distinct';
+import { Film } from '../film';
 
 @Component({
   selector: 'app-film-rating',
@@ -9,15 +8,28 @@ import 'rxjs/add/operator/distinct';
   styleUrls: ['./film-rating.component.css']
 })
 export class FilmRatingComponent implements OnInit {
-  ratings: string[];
-  constructor(private filmService: FilmService) { this.ratings = []; }
+  ratingList = [];
+  private persistentRating: string[];
+  constructor(private filmService: FilmService) {
+    this.filmService.getFilmRating().subscribe(d => this.persistentRating = d);
+  }
 
   ngOnInit() {
-    this.filmService.getFilms(10).subscribe(d => { d.map( r => {
-      if (this.ratings.indexOf(r.rating) === -1) {
-        this.ratings.push(r.rating);
+    this.filmService.getFilms(10).subscribe( data => {
+      data.map( m => {
+        this.fill_RatingList(m);
+      });
+    });
+  }
+
+  private fill_RatingList(m: Film) {
+    if (this.ratingList.findIndex(index => index.value == m.rating) === -1) {
+      if (this.persistentRating.indexOf(m.rating) !== -1) {
+        this.ratingList.push({ check: true, value: m.rating });
+      } else {
+        this.ratingList.push({ check: false, value: m.rating });
       }
-    }); });
+    }
   }
 
   filterRow(e) {

@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, EventEmitter } from '@angular/core';
 import { FilmService } from '../film.service';
 import { Film } from '../film';
 
@@ -9,15 +9,12 @@ import { Film } from '../film';
 })
 export class FilmListComponent implements OnInit {
   films: Film[];
-  filmRating: string[] = [];
-  constructor(private filmService: FilmService) {
-   }
+  filmRating: string[];
+  constructor(private filmService: FilmService) {}
 
   ngOnInit() {
     this.filmService.getFilms(10).subscribe(d => this.films = d);
-    this.filmService.getFilmRating().subscribe( r => {
-      this.filmRating = r;
-    });
+    this.filmService.getFilmRating().subscribe( r => this.filmRating = r);
   }
 
   filmRowClick(film: Film) {

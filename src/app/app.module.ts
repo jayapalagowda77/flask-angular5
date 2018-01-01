@@ -12,6 +12,7 @@ import { FilmModule } from './film/film.module';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { HomeComponent } from './home/home.component';
+import { RxpracticeModule } from './rxpractice/rxpractice.module';
 
 
 @NgModule({
@@ -27,7 +28,8 @@ import { HomeComponent } from './home/home.component';
     CityModule,
     CountryModule,
     UserModule,
-    FilmModule
+    FilmModule,
+    RxpracticeModule
   ],
   providers: [],
   bootstrap: [AppComponent]
