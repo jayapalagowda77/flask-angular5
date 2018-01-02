@@ -8,6 +8,7 @@ import { ObservableTodo } from '../observable-todo.model';
   styleUrls: ['./observable-todo-list.component.css']
 })
 export class ObservableTodoListComponent implements Observer, OnInit {
+
   todoList: ObservableTodo[];
   ngOnInit(): void {
     console.log('Todo list component registered!');
@@ -16,11 +17,10 @@ export class ObservableTodoListComponent implements Observer, OnInit {
 
   next(data: ObservableTodo[]) {
     console.log('todo List component received data');
-     this.todoList = data.slice(0);
+     this.todoList = data;
   }
 
   toggleLessonView(todo: ObservableTodo) {
-    console.log('toggling lesson');
-    todo.completed = !todo.completed;
+    store.toggleLessonView(todo);
   }
 }

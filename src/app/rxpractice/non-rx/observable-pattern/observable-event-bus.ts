@@ -40,12 +40,34 @@ class DataStore {
     };
     initializeTodoList(newList: ObservableTodo[]) {
         this.todos = newList.slice(0);
-        this.todoListSubject.next(this.todos);
+        this.broadcast();
     }
     addToDo(newToDo: ObservableTodo) {
         this.todos.push(Object.assign({}, newToDo));
-        this.todoListSubject.next(this.todos);
+        this.broadcast();
     }
+
+    broadcast() {
+        this.todoListSubject.next(this.todos.slice(0));
+    }
+
+    deleteToDo(deleted: ObservableTodo) {
+        const index = this.todos.indexOf(deleted);
+        if (index !== -1) {
+            this.todos.splice(index, 1);
+        }
+        this.broadcast();
+    }
+
+    toggleLessonView(todo: ObservableTodo) {
+        console.log('toggling lesson');
+        const index = this.todos.indexOf(todo);
+        if (index !== -1) {
+            this.todos[index].completed = !todo.completed;
+        }
+        this.broadcast();
+    }
+
 }
 
 export const store = new DataStore();

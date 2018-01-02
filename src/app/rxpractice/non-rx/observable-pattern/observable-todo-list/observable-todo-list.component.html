@@ -2,7 +2,7 @@
   <tbody>
     <tr *ngFor="let todo of todoList" [ngClass]="todo.completed ? 'table-secondary':''">
       <td>
-        <input type="checkbox" (click)="toggleLessonView(todo)" />
+        <input type="checkbox" [checked]="todo.completed" (click)="toggleLessonView(todo)" />
       </td>
       <td>
         {{ todo.description }}
