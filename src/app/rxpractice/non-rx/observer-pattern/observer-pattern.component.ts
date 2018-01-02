@@ -4,8 +4,7 @@ import { testTodo } from './observer-todo.model';
 
 @Component({
   selector: 'app-observer-pattern',
-  templateUrl: './observer-pattern.component.html',
-  styleUrls: ['./observer-pattern.component.css']
+  templateUrl: './observer-pattern.component.html'
 })
 export class ObserverPatternComponent implements OnInit {
 
