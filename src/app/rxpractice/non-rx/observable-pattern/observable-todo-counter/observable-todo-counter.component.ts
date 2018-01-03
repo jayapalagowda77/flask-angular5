@@ -4,14 +4,13 @@ import { Subject } from 'rxjs/Subject';
 
 @Component({
   selector: 'app-observable-todo-counter',
-  templateUrl: './observable-todo-counter.component.html',
-  styleUrls: ['./observable-todo-counter.component.css']
+  templateUrl: './observable-todo-counter.component.html'
 })
 export class ObservableTodoCounterComponent implements Observer {
   todoCounter = 0;
   constructor() {
     console.log('todo list component is registered as observer...');
-    store.todoList$.subscribe(this);
+    store.subscribe(this);
   }
   next(data: any) {
     console.log('counter component received data...' + data.length);

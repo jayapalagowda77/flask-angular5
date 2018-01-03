@@ -3,8 +3,7 @@ import { globalEventBus, TODO_LIST_AVAILABLE, ADD_NEW_TODO, Observer } from '../
 
 @Component({
   selector: 'app-observer-todo-counter',
-  templateUrl: './observer-todo-counter.component.html',
-  styleUrls: ['./observer-todo-counter.component.css']
+  templateUrl: './observer-todo-counter.component.html'
 })
 export class ObserverTodoCounterComponent implements Observer {
   todoCounter = 0;

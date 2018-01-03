@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { Todo, TestTodo } from '../../shared/models/todo';
-import { store } from './observable-event-bus';
+import { store } from './observable-rx-event-bus';
 
 @Component({
-  selector: 'app-observable-pattern',
-  templateUrl: './observable-pattern.component.html'
+  selector: 'app-observable-rx-pattern',
+  templateUrl: './observable-pattern-rx.component.html'
 })
-export class ObservablePatternComponent implements OnInit {
+export class ObservableRxPatternComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {

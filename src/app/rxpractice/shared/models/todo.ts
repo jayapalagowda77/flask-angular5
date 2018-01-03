@@ -1,11 +1,11 @@
-export class ObserverTodo {
+export class Todo {
 
     id: number;
     description: string;
     completed?: boolean;
 }
 
-export const testTodo: ObserverTodo[] = [
+export const TestTodo: Todo[] = [
     {
         id: 1,
         description: 'Setting up an Angular devlopment environment'

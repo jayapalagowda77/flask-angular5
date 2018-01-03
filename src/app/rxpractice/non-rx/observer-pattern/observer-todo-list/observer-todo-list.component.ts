@@ -1,14 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { ObserverTodo } from '../observer-todo.model';
+import { Todo } from '../../../shared/models/todo';
 import { TODO_LIST_AVAILABLE, ADD_NEW_TODO, globalEventBus, Observer } from '../event-bus';
 
 @Component({
   selector: 'app-observer-todo-list',
-  templateUrl: './observer-todo-list.component.html',
-  styleUrls: ['./observer-todo-list.component.css']
+  templateUrl: './observer-todo-list.component.html'
 })
 export class ObserverTodoListComponent implements Observer {
-  todoList: ObserverTodo[];
+  todoList: Todo[];
   constructor() {
     console.log('Todo list component registered!');
     globalEventBus.registerObserver(TODO_LIST_AVAILABLE, this);
@@ -28,7 +27,7 @@ export class ObserverTodoListComponent implements Observer {
     this.todoList = data;
   }
 
-  toggleLessonView(todo: ObserverTodo) {
+  toggleLessonView(todo: Todo) {
     console.log('toggling lesson');
     todo.completed = !todo.completed;
   }

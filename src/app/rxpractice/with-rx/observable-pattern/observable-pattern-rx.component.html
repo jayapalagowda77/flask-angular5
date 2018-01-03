@@ -1,0 +1,12 @@
+<br/>
+<div class="card">
+  <h5 class="card-header">Simple Todo-List with Observable Design Pattern</h5>
+  <div class="card-body">
+    <app-observable-rx-todo-counter></app-observable-rx-todo-counter>
+    <app-observable-rx-todo-list></app-observable-rx-todo-list>
+    <div class="form-group">
+      <input type="text" class="form-control" #input/>
+    </div>
+    <button class="btn btn-outline-dark" (click)="addTodo(input.value)">Add todo</button>
+  </div>
+</div>

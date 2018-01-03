@@ -1,26 +1,25 @@
 import { Component, OnInit } from '@angular/core';
 import { Observer, store } from '../observable-event-bus';
-import { ObservableTodo } from '../observable-todo.model';
+import { Todo } from '../../../shared/models/todo';
 
 @Component({
   selector: 'app-observable-todo-list',
-  templateUrl: './observable-todo-list.component.html',
-  styleUrls: ['./observable-todo-list.component.css']
+  templateUrl: './observable-todo-list.component.html'
 })
 export class ObservableTodoListComponent implements Observer, OnInit {
 
-  todoList: ObservableTodo[];
+  todoList: Todo[];
   ngOnInit(): void {
     console.log('Todo list component registered!');
-    store.todoList$.subscribe(this);
+    store.subscribe(this);
   }
 
-  next(data: ObservableTodo[]) {
+  next(data: Todo[]) {
     console.log('todo List component received data');
      this.todoList = data;
   }
 
-  toggleLessonView(todo: ObservableTodo) {
+  toggleLessonView(todo: Todo) {
     store.toggleLessonView(todo);
   }
 }

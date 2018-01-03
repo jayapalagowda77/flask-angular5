@@ -1,4 +1,4 @@
-import { ObservableTodo } from './observable-todo.model';
+import { Todo } from '../../shared/models/todo';
 
 export interface Observer {
     next(data: any);
@@ -28,21 +28,22 @@ class SubjectImplementation implements Subject {
     }
 }
 
-class DataStore {
-    private todos: ObservableTodo[] = [];
+class DataStore implements Observable {
+    private todos: Todo[] = [];
     private todoListSubject = new SubjectImplementation();
-    public todoList$: Observable = {
-        subscribe: obs => {
-            this.todoListSubject.subscribe(obs);
-            obs.next(this.todos);
-        },
-        unsubscribe: obs => this.todoListSubject.unsubscribe(obs)
-    };
-    initializeTodoList(newList: ObservableTodo[]) {
+
+    subscribe(obs: Observer) {
+        this.todoListSubject.subscribe(obs);
+        obs.next(this.todos);
+    }
+    unsubscribe(obs: Observer) {
+        this.todoListSubject.unsubscribe(obs);
+    }
+    initializeTodoList(newList: Todo[]) {
         this.todos = newList.slice(0);
         this.broadcast();
     }
-    addToDo(newToDo: ObservableTodo) {
+    addToDo(newToDo: Todo) {
         this.todos.push(Object.assign({}, newToDo));
         this.broadcast();
     }
@@ -51,7 +52,7 @@ class DataStore {
         this.todoListSubject.next(this.todos.slice(0));
     }
 
-    deleteToDo(deleted: ObservableTodo) {
+    deleteToDo(deleted: Todo) {
         const index = this.todos.indexOf(deleted);
         if (index !== -1) {
             this.todos.splice(index, 1);
@@ -59,7 +60,7 @@ class DataStore {
         this.broadcast();
     }
 
-    toggleLessonView(todo: ObservableTodo) {
+    toggleLessonView(todo: Todo) {
         console.log('toggling lesson');
         const index = this.todos.indexOf(todo);
         if (index !== -1) {
