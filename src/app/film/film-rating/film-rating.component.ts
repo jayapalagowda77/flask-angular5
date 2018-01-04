@@ -4,8 +4,7 @@ import { Film } from '../film';
 
 @Component({
   selector: 'app-film-rating',
-  templateUrl: './film-rating.component.html',
-  styleUrls: ['./film-rating.component.css']
+  templateUrl: './film-rating.component.html'
 })
 export class FilmRatingComponent implements OnInit {
   ratingList = [];
@@ -15,8 +14,8 @@ export class FilmRatingComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.filmService.getFilms(10).subscribe( data => {
-      data.map( m => {
+    this.filmService.getFilms(10).subscribe(data => {
+      data.map(m => {
         this.fill_RatingList(m);
       });
     });

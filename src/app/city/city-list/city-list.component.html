@@ -1,41 +1,51 @@
 <div class="row justify-content-md-center">
-    <div class="col-10">
-      <div class="row">
-          <div class="col">
-              <a class="btn btn-outline-success" routerLink="add">Add</a>
-          </div>
-          <div class="col align-self-center text-right">Search :</div>
-          <div class="col">
-             <input class="form-control" [(ngModel)]="cityName"/>
-          </div>
+  <div class="col-10">
+    <div class="row">
+      <div class="col">
+        <a class="btn btn-outline-success" routerLink="add">Add</a>
       </div>
-    </div>  
-  </div>
-  <br/>
-  <div class="row justify-content-md-center">
-    <div class="col-10">
-      <table class="table table-bordered">
-        <thead class="thead-light">
-          <tr>
-            <th>Id</th>
-            <th>Name</th>
-            <th>Country Id</th>
-            <th>Last Updated</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let city of cities | cityFilter:cityName">
-            <td>{{ city.city_id }}</td>
-            <td><a [routerLink]="['detail', city.city_id]">{{ city.city }}</a></td>
-            <td>{{ city.country_id }}</td>
-            <td>{{ city.last_update }}</td>
-            <td>
-              <a class="btn btn-outline-warning" [routerLink]="['edit', city.city_id]">Edit</a>
-              <a class="btn btn-outline-danger" [routerLink]="['delete', city.city_id]">Delete</a>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+      <div class="col align-self-center text-right">Search :</div>
+      <div class="col">
+        <input class="form-control" [(ngModel)]="cityName" />
+      </div>
     </div>
   </div>
+</div>
+<br/>
+<div class="row justify-content-md-center">
+  <div class="col-10">
+    <table class="table table-bordered">
+      <thead class="thead-light">
+        <tr>
+          <th>Id</th>
+          <th>Name</th>
+          <th>Country Id</th>
+          <th>Last Updated</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody *ngIf="cities$ | async as cities else loadImage">
+        <tr *ngFor="let city of cities | cityFilter:cityName">
+          <td>{{ city.city_id }}</td>
+          <td>
+            <a [routerLink]="['detail', city.city_id]">{{ city.city }}</a>
+          </td>
+          <td>{{ city.country_id }}</td>
+          <td>{{ city.last_update }}</td>
+          <td>
+            <a class="btn btn-outline-warning" [routerLink]="['edit', city.city_id]">Edit</a>
+            <a class="btn btn-outline-danger" [routerLink]="['delete', city.city_id]">Delete</a>
+          </td>
+        </tr>
+      </tbody>
+      <ng-template #loadImage>
+        <tbody>
+          <tr>
+            <td colspan="5">Loading......</td>
+          </tr>
+        </tbody>
+      </ng-template>
+    </table>
+
+  </div>
+</div>

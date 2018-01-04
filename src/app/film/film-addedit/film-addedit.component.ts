@@ -5,15 +5,14 @@ import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-film-addedit',
-  templateUrl: './film-addedit.component.html',
-  styleUrls: ['./film-addedit.component.css']
+  templateUrl: './film-addedit.component.html'
 })
 export class FilmAddeditComponent implements OnInit {
   film: Film;
   constructor(private filmService: FilmService) { }
 
   ngOnInit() {
-    this.filmService.getCurrentRecord().subscribe( d => this.film = d );
+    this.filmService.getCurrentRecord().subscribe(d => this.film = d);
   }
 
   onFilmSave(formData: NgForm) {

@@ -1,20 +1,20 @@
 <div class="row justify-content-md-center">
   <div class="col-10">
     <div class="row">
-        <div class="col">
-            <a class="btn btn-outline-success" routerLink="add">Add</a>
-        </div>
-        <div class="col align-self-center text-right">Search :</div>
-        <div class="col">
-           <input class="form-control" [(ngModel)]="countryName" name="countryName"/>
-        </div>
+      <div class="col">
+        <a class="btn btn-outline-success" routerLink="add">Add</a>
+      </div>
+      <div class="col align-self-center text-right">Search :</div>
+      <div class="col">
+        <input class="form-control" [(ngModel)]="countryName" name="countryName" />
+      </div>
     </div>
-  </div>  
+  </div>
 </div>
 <br/>
 <div class="row justify-content-md-center">
   <div class="col-10">
-    <table class="table table-bordered" *ngIf="countries">
+    <table class="table table-bordered">
       <thead class="thead-light">
         <tr>
           <th>Id</th>
@@ -23,17 +23,26 @@
           <th>Action</th>
         </tr>
       </thead>
-      <tbody>
+      <tbody *ngIf="countries$ | async as countries else loadImage">
         <tr *ngFor="let country of countries | countryFilter:countryName">
           <td>{{ country.country_id }}</td>
-          <td><a [routerLink]="['detail', country.country_id]">{{ country.country }}</a></td>
+          <td>
+            <a [routerLink]="['detail', country.country_id]">{{ country.country }}</a>
+          </td>
           <td>{{ country.last_update | date:'dd/MM/yyyy'}}</td>
           <td>
-            <a class="btn btn-outline-warning" [routerLink] ="['edit', country.country_id]">Edit</a>
-            <a class="btn btn-outline-danger" [routerLink] ="['delete', country.country_id]">Delete</a>
+            <a class="btn btn-outline-warning" [routerLink]="['edit', country.country_id]">Edit</a>
+            <a class="btn btn-outline-danger" [routerLink]="['delete', country.country_id]">Delete</a>
           </td>
         </tr>
       </tbody>
+      <ng-template #loadImage>
+        <tbody>
+          <tr>
+            <td colspan="5">Loading......</td>
+          </tr>
+        </tbody>
+      </ng-template>
     </table>
   </div>
 </div>

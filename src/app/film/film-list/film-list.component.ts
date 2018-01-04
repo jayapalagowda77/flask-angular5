@@ -4,17 +4,16 @@ import { Film } from '../film';
 
 @Component({
   selector: 'app-film-list',
-  templateUrl: './film-list.component.html',
-  styleUrls: ['./film-list.component.css']
+  templateUrl: './film-list.component.html'
 })
 export class FilmListComponent implements OnInit {
   films: Film[];
   filmRating: string[];
-  constructor(private filmService: FilmService) {}
+  constructor(private filmService: FilmService) { }
 
   ngOnInit() {
     this.filmService.getFilms(10).subscribe(d => this.films = d);
-    this.filmService.getFilmRating().subscribe( r => this.filmRating = r);
+    this.filmService.getFilmRating().subscribe(r => this.filmRating = r);
   }
 
   filmRowClick(film: Film) {
