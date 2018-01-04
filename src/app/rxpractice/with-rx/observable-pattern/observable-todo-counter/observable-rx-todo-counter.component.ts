@@ -12,6 +12,6 @@ export class ObservableRxTodoCounterComponent {
   todoCounter = 0;
   constructor() {
     console.log('todo list component is registered as observer...');
-    store.subscribe(this);
+    store.todoList$.subscribe(d => this.todoCounter = d.length);
   }
 }

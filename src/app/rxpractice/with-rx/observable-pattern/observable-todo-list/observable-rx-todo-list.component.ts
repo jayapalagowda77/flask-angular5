@@ -11,7 +11,7 @@ export class ObservableRxTodoListComponent implements OnInit {
   todoList: Todo[];
   ngOnInit(): void {
     console.log('Todo list component registered!');
-    store.todoList$.subscribe();
+    store.todoList$.subscribe(p => this.todoList = p);
   }
 
   toggleLessonView(todo: Todo) {
